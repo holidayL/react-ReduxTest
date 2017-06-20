@@ -16,10 +16,11 @@ class testtest extends Component {
       return;
     }
     const { todos } = this.props;
-    // testffff(input.value);
-    // this.props.todoActions();
     console.log(todos);
     console.log(this.props);
+    // testffff(input.value);
+    this.props.actions.addTodo(input.value);
+
     input.value = '';
     // console.log(this.props);
   }
@@ -38,9 +39,9 @@ class testtest extends Component {
           Add Todo
         </button>
           <p>{
-            // this.props.todos.length === 0
-            // ? 0
-            // : this.props.todos[this.props.todos.length - 1].text
+            this.props.todos.length === 0
+            ? 0
+            : this.props.todos[this.props.todos.length - 1].text
           }
           </p>
         </form>
