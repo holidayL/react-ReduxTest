@@ -18,6 +18,13 @@ const todos = (state = [], action) => {
           ? { ...todo, completed: !todo.completed }
           : todo,
       );
+    case 'getFetchData_TODO':
+      return [
+        ...state,
+        {
+          data: action.data,
+        },
+      ];
     default:
       return state;
   }

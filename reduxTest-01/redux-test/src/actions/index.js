@@ -15,3 +15,7 @@ export const toggleTodo = (id) => ({
   type: 'TOGGLE_TODO',
   id,
 });
+export const getFetchData = data => ({
+  type: 'getFetchData_TODO',
+  data,
+});

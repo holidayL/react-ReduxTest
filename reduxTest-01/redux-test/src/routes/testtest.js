@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import fetchTest from '../utils/fetchTool';
 
 let input;
 class testtest extends Component {
@@ -16,13 +17,16 @@ class testtest extends Component {
       return;
     }
     const { todos } = this.props;
-    console.log(todos);
-    console.log(this.props);
-    // testffff(input.value);
-    this.props.actions.addTodo(input.value);
-
-    input.value = '';
+    // console.log(todos);
     // console.log(this.props);
+    this.props.actions.addTodo(input.value);
+    input.value = '';
+  }
+  //调用接口
+    getFetchDataButtonClick=() => {
+   fetchTest.fetchTestFunc('http://192.168.0.1/v1/match/get-matchinfo'
+      , this.props.actions.getFetchData);
+    console.log(this.props.todos);
   }
   render() {
     return (
@@ -45,6 +49,10 @@ class testtest extends Component {
           }
           </p>
         </form>
+                <button onClick={this.getFetchDataButtonClick}>
+          getFetchDataButton
+        </button>
+     <p>通过this.props.todos去获取具体接口返回数据</p>
       </div>
     );
   }
