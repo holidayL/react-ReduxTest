@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import fetchTest from '../utils/fetchTool';
+import '../mockData';
 
 let input;
 class testtest extends Component {
@@ -17,9 +19,10 @@ class testtest extends Component {
       return;
     }
     const { todos } = this.props;
-    // console.log(todos);
-    // console.log(this.props);
+    console.log("todos");
+    console.log(this.props);
     this.props.actions.addTodo(input.value);
+      console.log(this.props);
     input.value = '';
   }
   //调用接口
@@ -27,6 +30,15 @@ class testtest extends Component {
    fetchTest.fetchTestFunc('http://192.168.0.1/v1/match/get-matchinfo'
       , this.props.actions.getFetchData);
     console.log(this.props.todos);
+  }
+  //mock功能测试
+  mockTestClick=()=>{
+axios.get('/data',{dataType:'json'})
+.then(res=>{
+  console.log(res.data);
+  return res.data;
+  // .catch(console.log("have errors"));
+})
   }
   render() {
     return (
@@ -51,6 +63,9 @@ class testtest extends Component {
         </form>
                 <button onClick={this.getFetchDataButtonClick}>
           getFetchDataButton
+        </button>
+                   <button onClick={this.mockTestClick}>
+          mockTest
         </button>
      <p>通过this.props.todos去获取具体接口返回数据</p>
       </div>
