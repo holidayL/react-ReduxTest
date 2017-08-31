@@ -33,12 +33,34 @@ class testtest extends Component {
   }
   //mock功能测试
   mockTestClick=()=>{
-axios.get('/data',{dataType:'json'})
-.then(res=>{
-  console.log(res.data);
-  return res.data;
-  // .catch(console.log("have errors"));
-})
+fetch('http://rapapi.org/mockjsdata/25067/api/v1/security/login',{
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+.then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      if (response.status >= 300) {
+        if (response.status === 400) {
+        } if (response.status === 404) {
+        } else {
+        }
+      }
+    })
+      .then((json) => {
+        console.log(json);
+        if (json.code === 1000 || json.code === 1033) {
+
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error(`request failed ${error}`);
+      });
   }
   render() {
     return (
